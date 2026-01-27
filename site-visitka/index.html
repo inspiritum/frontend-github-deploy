@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сайт-визитка</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">MySite</div>
+        <nav class="nav">
+            <a href="#about">Обо мне</a>
+            <a href="#skills">Навыки</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+        <button class="burger" id="burger">☰</button>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-content">
+        <div>
+            <h1>Привет, я Иван 👋</h1>
+            <p>Frontend-разработчик. Делаю сайты и интерфейсы.</p>
+            <a href="#contacts" class="btn">Связаться</a>
+        </div>
+        <img src="img/avatar.png" alt="Avatar" class="avatar">
+    </div>
+</section>
+
+<section id="about" class="section">
+    <div class="container">
+        <h2>Обо мне</h2>
+        <p>
+            Я занимаюсь разработкой сайтов и интерфейсов.
+            Люблю простые, быстрые и красивые решения.
+        </p>
+    </div>
+</section>
+
+<section id="skills" class="section gray">
+    <div class="container">
+        <h2>Навыки</h2>
+        <div class="skills">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">Git</div>
+        </div>
+    </div>
+</section>
+
+<section id="contacts" class="section">
+    <div class="container">
+        <h2>Контакты</h2>
+        <form id="contactForm" class="form">
+            <input type="text" placeholder="Имя" required />
+            <input type="email" placeholder="Email" required />
+            <textarea placeholder="Сообщение"></textarea>
+            <button type="submit" class="btn">Отправить</button>
+        </form>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 MySite</p>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
