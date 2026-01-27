@@ -1,0 +1,94 @@
+:root {
+    --bg: #f9fafb;
+    --text: #111827;
+    --muted: #6b7280;
+    --accent: #2563eb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 60rem;
+    padding: 0 1rem;
+    margin: 0 auto;
+}
+
+.header {
+    padding: 3rem 0;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.name {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.role {
+    margin: 0.5rem 0 0;
+    color: var(--muted);
+}
+
+.section {
+    margin: 3rem 0;
+}
+
+.section h2 {
+    margin-bottom: 0.75rem;
+}
+
+.skills {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.75rem, 1fr));
+    gap: 0.5rem;
+}
+
+.skills li {
+    padding: 0.5rem 0.75rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    text-align: center;
+}
+
+.button {
+    padding: 0.625rem 1rem;
+    border: none;
+    border-radius: 0.375rem;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+.email {
+    margin-top: 0.75rem;
+    font-weight: 500;
+}
+
+.hidden {
+    display: none;
+}
+
+.footer {
+    padding: 1.5rem 0;
+    color: var(--muted);
+    text-align: center;
+    border-top: 1px solid #e5e7eb;
+}
