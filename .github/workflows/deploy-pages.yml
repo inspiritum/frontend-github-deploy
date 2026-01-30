@@ -1,35 +1,31 @@
-name: Deploy GitHub Pages (step-4)
+name: Deploy GitHub Pages (step-4) # Имя workflow, отображается во вкладке Actions и помогает понять назначение сценария
 
-on:
-  push:
-    branches:
-      - step-4-setup-github-actions
+on: # Условия, при которых GitHub запускает этот workflow
+  push: # Workflow запускается при каждом push в репозиторий
+    branches: # Ограничиваем запуск только указанными ветками
+      - step-4-setup-github-actions # Деплой выполняется только из этой учебной ветки
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+permissions: # Явно задаём права для GITHUB_TOKEN, с которым работает workflow
+  contents: read # Разрешаем читать содержимое репозитория (нужно для checkout кода)
+  pages: write # Разрешаем создавать и обновлять деплой GitHub Pages
+  id-token: write # Разрешаем получать OIDC-токен для безопасной аутентификации деплоя
 
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
+jobs: # Описываем набор задач, которые будет выполнять workflow
+  deploy: # Задача, отвечающая за публикацию сайта
+    runs-on: ubuntu-latest # Выполняем задачу на виртуальной машине с Ubuntu
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+    steps: # Последовательные шаги, которые выполняются внутри задачи
+      - name: Checkout # Шаг с понятным именем для логов
+        uses: actions/checkout@v4 # Загружает код репозитория в рабочее окружение runner'а
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Setup Pages # Подготавливает окружение для работы с GitHub Pages
+        uses: actions/configure-pages@v5 # Настраивает Pages и проверяет доступность деплоя
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact (src)
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact (src) # Определяем, какие файлы считаются сайтом
+        uses: actions/upload-pages-artifact@v3 # Упаковывает указанные файлы в артефакт для Pages
         with:
-          path: 'src'
+          path: 'src' # Папка src считается итоговым содержимым сайта
 
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy # Финальный шаг публикации сайта
+        id: deployment # Идентификатор шага для получения информации о деплое
+        uses: actions/deploy-pages@v4 # Публикует артефакт и обновляет GitHub Pages
