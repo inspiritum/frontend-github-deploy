@@ -61,3 +61,61 @@
 
 3.5) Если deployment прошел а на странице ghpages (на стенде) новых изменений нет,  
 то проблема может быть в кеше браузера (тогда помогает hard realod или режим incognito)
+
+### Шаг 4 - Настроить папку src/
+
+#### Ветка "step-4-setup-github-actions"
+
+> Зачем менять на `src/` ? -> Чтобы научиться...  
+> - папка `src/` это стандарт на frontend проектах (всегда есть)  
+> - папка `docs/` используется не для хранения кода проекта, а для документации  
+> - шаг с папкой `docs/` это последний "простой шаг", где можно было сделать все легко через настройки
+
+> Теперь настало время переходить к github actions...  
+> - т.к. именно этот инструмент сейчас поможет в автоматизации деплоя  
+
+4.1) Нужно переименовать папку `docs/` в `src/`  
+(или вернее сказать "переместить содержимое папки `docs/` в папку `src/`")
+
+4.2) Нужно создать файл `.github/workflows/deploy-pages.yml`  
+
+```yml
+name: Deploy GitHub Pages (step-4)
+
+on:
+  push:
+    branches:
+      - step-4-setup-github-actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact (src)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'src'
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+4.3) Закоммитить и запушить все изменения в соответствующую ветку
+
+4.4) Настроить работу с github actions (переключиться на них)  
+- перейти в раздел `Settings > Pages`  
+- в поле `Source` выбрать `GitHub Actions`  
+- в этом же разделе (`Code and automation`) перейти в раздел `Actions`
